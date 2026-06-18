@@ -1,0 +1,253 @@
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+.browser{background:var(--color-background-secondary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);overflow:hidden;font-family:var(--font-sans)}
+.browser-bar{background:var(--color-background-primary);border-bottom:0.5px solid var(--color-border-tertiary);padding:10px 14px;display:flex;align-items:center;gap:10px}
+.dots{display:flex;gap:5px}
+.dot{width:10px;height:10px;border-radius:50%}
+.dot.r{background:#E24B4A}.dot.y{background:#EF9F27}.dot.g{background:#639922}
+.url-bar{flex:1;background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);border-radius:6px;padding:4px 10px;font-size:11px;color:var(--color-text-secondary);display:flex;align-items:center;gap:6px}
+.screen{height:600px;overflow-y:auto;background:#f8f7ff}
+
+.s-nav{background:#fff;padding:10px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:0.5px solid rgba(127,119,221,0.18);position:sticky;top:0;z-index:10}
+.s-logo{display:flex;align-items:center;gap:7px}
+.s-logo-circle{width:26px;height:26px;border-radius:50%;background:linear-gradient(135deg,#7F77DD,#1D9E75);display:flex;align-items:center;justify-content:center;color:#fff;font-size:8px;font-weight:600}
+.s-logo-text{font-size:10px;font-weight:500;color:#3C3489}
+.s-nav-links{display:flex;gap:14px}
+.s-nav-links span{font-size:9px;color:#5a5a7a}
+.s-nav-cta{background:#7F77DD;color:#fff;font-size:9px;padding:4px 10px;border-radius:50px;font-weight:500}
+
+.s-hero{padding:28px 20px;background:#f8f7ff;display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:center}
+.s-hero h1{font-size:15px;font-weight:500;color:#1a1a2e;line-height:1.3;margin-bottom:7px}
+.s-hero h1 em{color:#7F77DD;font-style:italic}
+.s-hero p{font-size:8px;color:#5a5a7a;line-height:1.5;margin-bottom:10px}
+.s-hero-btns{display:flex;gap:6px}
+.s-btn-p{background:#7F77DD;color:#fff;font-size:8px;padding:5px 12px;border-radius:50px}
+.s-btn-o{border:1px solid #7F77DD;color:#7F77DD;font-size:8px;padding:5px 12px;border-radius:50px;background:transparent}
+.s-hero-cards{display:flex;flex-direction:column;gap:7px}
+.s-hcard{background:#fff;border:0.5px solid rgba(127,119,221,0.18);border-radius:10px;padding:9px;display:flex;gap:8px;align-items:flex-start}
+.s-hcard-icon{width:28px;height:28px;border-radius:7px;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:11px}
+.s-hcard-icon.p{background:#EEEDFE}.s-hcard-icon.t{background:#E1F5EE}
+.s-hcard h3{font-size:8px;font-weight:500;color:#1a1a2e;margin-bottom:2px}
+.s-hcard p{font-size:7px;color:#5a5a7a;line-height:1.4}
+.s-badge{display:inline-flex;align-items:center;gap:3px;margin-top:3px;font-size:6.5px;font-weight:600;color:#085041;background:#E1F5EE;padding:2px 5px;border-radius:50px}
+
+.s-section{padding:22px 20px}
+.s-section-label{font-size:7px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#1D9E75;margin-bottom:4px}
+.s-section-title{font-size:13px;font-weight:500;color:#1a1a2e;margin-bottom:6px;line-height:1.3}
+.s-section-title em{color:#7F77DD;font-style:italic}
+
+.s-about{background:#fff}
+.s-about-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:center}
+.s-stats{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:10px}
+.s-stat{background:#f8f7ff;border-radius:8px;padding:8px;text-align:center}
+.s-stat-num{font-size:13px;color:#7F77DD;font-weight:500}
+.s-stat-lbl{font-size:6.5px;color:#5a5a7a;margin-top:1px}
+.s-mission{background:#EEEDFE;border-radius:12px;padding:14px;position:relative;overflow:hidden}
+.s-mission-q{position:absolute;top:-6px;right:8px;font-size:42px;color:rgba(127,119,221,0.12);line-height:1;font-style:italic}
+.s-mission p{font-size:8.5px;font-style:italic;color:#3C3489;line-height:1.6;position:relative;z-index:1}
+.s-mission-tag{font-size:6.5px;font-weight:600;color:#7F77DD;text-transform:uppercase;letter-spacing:0.06em;margin-top:6px;display:block}
+
+.s-services{background:#f8f7ff}
+.s-svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:14px}
+.s-svc-card{background:#fff;border:0.5px solid rgba(127,119,221,0.18);border-radius:10px;padding:10px}
+.s-svc-icon{width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:11px;margin-bottom:6px}
+.s-svc-icon.p{background:#EEEDFE}.s-svc-icon.t{background:#E1F5EE}
+.s-svc-card h3{font-size:8px;font-weight:500;color:#1a1a2e;margin-bottom:3px}
+.s-svc-card p{font-size:7px;color:#5a5a7a;line-height:1.4}
+
+.s-lang{background:linear-gradient(135deg,#085041,#3C3489);padding:22px 20px}
+.s-lang .s-section-label{color:rgba(255,255,255,0.65)}
+.s-lang .s-section-title{color:#fff}
+.s-lang-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.s-lang-card{background:rgba(255,255,255,0.1);border:0.5px solid rgba(255,255,255,0.2);border-radius:10px;padding:10px;text-align:center}
+.s-lang-flag{font-size:16px;margin-bottom:4px}
+.s-lang-card h4{font-size:8px;font-weight:500;color:#fff;margin-bottom:2px}
+.s-lang-card p{font-size:7px;color:rgba(255,255,255,0.65);line-height:1.4}
+
+.s-faq{background:#f8f7ff}
+.s-faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:14px}
+.s-faq-item{background:#fff;border:0.5px solid rgba(127,119,221,0.18);border-radius:10px;padding:10px}
+.s-faq-item h4{font-size:8px;font-weight:500;color:#3C3489;margin-bottom:3px}
+.s-faq-item p{font-size:7px;color:#5a5a7a;line-height:1.4}
+
+.s-contact{background:#fff}
+.s-contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;align-items:start}
+.s-cinfo{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.s-crow{display:flex;align-items:center;gap:7px;padding:8px;background:#f8f7ff;border-radius:8px;border:0.5px solid rgba(127,119,221,0.18)}
+.s-crow-icon{width:28px;height:28px;border-radius:7px;background:#EEEDFE;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0}
+.s-crow h5{font-size:6.5px;color:#5a5a7a;margin-bottom:1px}
+.s-crow p{font-size:8px;font-weight:500;color:#1a1a2e}
+.s-badges{display:flex;gap:5px;flex-wrap:wrap;margin-top:8px}
+.s-pill{font-size:6.5px;font-weight:600;padding:3px 7px;border-radius:50px}
+.s-pill.p{background:#EEEDFE;color:#3C3489}
+.s-pill.t{background:#E1F5EE;color:#085041}
+.s-form{display:flex;flex-direction:column;gap:7px}
+.s-form-row{display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.s-finput{background:#f8f7ff;border:0.5px solid rgba(127,119,221,0.3);border-radius:7px;padding:5px 8px;font-size:7.5px;color:#1a1a2e;width:100%}
+.s-flabel{font-size:7px;font-weight:500;color:#1a1a2e;margin-bottom:2px;display:block}
+.s-fgroup{display:flex;flex-direction:column}
+.s-ftextarea{background:#f8f7ff;border:0.5px solid rgba(127,119,221,0.3);border-radius:7px;padding:5px 8px;font-size:7.5px;color:#5a5a7a;width:100%;height:46px;resize:none}
+.s-fsubmit{background:#7F77DD;color:#fff;font-size:8px;font-weight:500;padding:7px;border-radius:50px;text-align:center;margin-top:2px}
+
+.s-footer{background:#1a1a2e;padding:16px 20px;text-align:center}
+.s-footer-name{font-size:10px;font-weight:500;color:#fff;margin-bottom:3px}
+.s-footer-div{width:28px;height:2px;background:#7F77DD;margin:8px auto}
+.s-footer p{font-size:7px;color:rgba(255,255,255,0.5)}
+</style>
+
+<h2 class="sr-only">Circle of Support Inc. website mockup — updated with CFS, DDS Pilot Program, and Service Code 076 removed.</h2>
+
+<div class="browser">
+  <div class="browser-bar">
+    <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+    <div class="url-bar">
+      <i class="ti ti-lock" style="font-size:10px" aria-hidden="true"></i>
+      www.circleofsupportinc.org
+    </div>
+  </div>
+
+  <div class="screen">
+
+    <div class="s-nav">
+      <div class="s-logo">
+        <div class="s-logo-circle">COS</div>
+        <div class="s-logo-text">Circle of Support Inc.</div>
+      </div>
+      <div class="s-nav-links">
+        <span>About</span><span>Services</span><span>Who we serve</span><span>Languages</span><span>FAQ</span><span>Contact</span>
+      </div>
+      <div class="s-nav-cta">Get started</div>
+    </div>
+
+    <div class="s-hero">
+      <div>
+        <h1>Together, we create a <em>circle where everyone belongs.</em></h1>
+        <p>Circle of Support Inc. empowers individuals with developmental disabilities and their families through coordinated care, planning, and community partnerships.</p>
+        <div class="s-hero-btns">
+          <div class="s-btn-p">Connect with us</div>
+          <div class="s-btn-o">Our services</div>
+        </div>
+      </div>
+      <div class="s-hero-cards">
+        <div class="s-hcard">
+          <div class="s-hcard-icon p">🏠</div>
+          <div>
+            <h3>Family-centered care</h3>
+            <p>Supporting adults with developmental disabilities who choose to live at home — with flexible, individualized plans.</p>
+            <div class="s-badge">✓ DDS-approved provider</div>
+          </div>
+        </div>
+        <div class="s-hcard">
+          <div class="s-hcard-icon t">🌐</div>
+          <div>
+            <h3>Multilingual support</h3>
+            <p>Services in English, Eastern Armenian, Western Armenian, and more.</p>
+            <div class="s-badge">✓ Culturally responsive</div>
+          </div>
+        </div>
+        <div class="s-hcard">
+          <div class="s-hcard-icon p">📋</div>
+          <div>
+            <h3>Vendor #PL2644</h3>
+            <p>Vendorized by NLACRC. Administrative Director: Stella Keshishyan.</p>
+            <div class="s-badge">✓ NLACRC vendorized</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-section s-about">
+      <div class="s-about-grid">
+        <div>
+          <div class="s-section-label">About us</div>
+          <div class="s-section-title">We're here to <em>support your journey.</em></div>
+          <p style="font-size:8px;color:#5a5a7a;line-height:1.5;margin-bottom:6px">Coordinated family support designed for adults with developmental disabilities who choose to live with their families — coordinating services, planning for the future, and connecting families to community resources.</p>
+          <div class="s-stats">
+            <div class="s-stat"><div class="s-stat-num">3+</div><div class="s-stat-lbl">Languages served</div></div>
+            <div class="s-stat"><div class="s-stat-num">LA</div><div class="s-stat-lbl">North LA County</div></div>
+            <div class="s-stat"><div class="s-stat-num">PL2644</div><div class="s-stat-lbl">Vendor number</div></div>
+            <div class="s-stat"><div class="s-stat-num">5</div><div class="s-stat-lbl">Core services</div></div>
+          </div>
+        </div>
+        <div class="s-mission">
+          <div class="s-mission-q">"</div>
+          <p>To empower individuals and families through coordinated care, planning, and community partnerships — creating a circle where everyone belongs.</p>
+          <span class="s-mission-tag">Our Mission</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-section s-services">
+      <div class="s-section-label">What we do</div>
+      <div class="s-section-title">Services built around <em>your family's needs</em></div>
+      <div class="s-svc-grid">
+        <div class="s-svc-card"><div class="s-svc-icon p">📅</div><h3>Future planning</h3><p>Guiding families in preparing for long-term security and peace of mind.</p></div>
+        <div class="s-svc-card"><div class="s-svc-icon t">🤝</div><h3>Care provider coordination</h3><p>Connecting families with trusted providers and community resources.</p></div>
+        <div class="s-svc-card"><div class="s-svc-icon p">🛡️</div><h3>Emergency planning</h3><p>Helping families develop plans for unexpected situations.</p></div>
+        <div class="s-svc-card"><div class="s-svc-icon t">🏛️</div><h3>Regional center services</h3><p>Accessing and navigating regional center resources and supports.</p></div>
+        <div class="s-svc-card"><div class="s-svc-icon p">🏘️</div><h3>Community-based support</h3><p>Building inclusive connections and strengthening community ties.</p></div>
+        <div class="s-svc-card"><div class="s-svc-icon t">🌍</div><h3>Culturally responsive</h3><p>Respectful of each family's culture, ethnicity, and language.</p></div>
+      </div>
+    </div>
+
+    <div class="s-section s-lang">
+      <div class="s-section-label">Multilingual services</div>
+      <div class="s-section-title" style="color:#fff">We speak your language</div>
+      <div class="s-lang-grid">
+        <div class="s-lang-card"><div class="s-lang-flag">🇺🇸</div><h4>English</h4><p>Full services in English for all families in our area.</p></div>
+        <div class="s-lang-card"><div class="s-lang-flag">🇦🇲</div><h4>Armenian — Eastern<br><span style="font-size:6.5px;opacity:0.75">Արևելյան հայերեն</span></h4><p>Ծառայություններ արևելահայ բարբառով։</p></div>
+        <div class="s-lang-card"><div class="s-lang-flag">🇦🇲</div><h4>Armenian — Western<br><span style="font-size:6.5px;opacity:0.75">Արեւմտահայ</span></h4><p>Ծառայութիւններ արեւմտահայ բարբառով։</p></div>
+      </div>
+    </div>
+
+    <div class="s-section s-faq">
+      <div class="s-section-label">Frequently asked questions</div>
+      <div class="s-section-title">Common <em>questions</em> answered</div>
+      <div class="s-faq-grid">
+        <div class="s-faq-item"><h4>What services does Circle of Support offer?</h4><p>We provide coordinated family support for adults with developmental disabilities living at home — including future planning, care coordination, and regional center navigation.</p></div>
+        <div class="s-faq-item"><h4>Who is eligible for our services?</h4><p>Adults with developmental disabilities receiving regional center services who live or plan to live with their family.</p></div>
+        <div class="s-faq-item"><h4>Do you serve Armenian-speaking families?</h4><p>Yes — in both Eastern and Western Armenian dialects, with staff respectful of Armenian culture and community values.</p></div>
+        <div class="s-faq-item"><h4>How do I get started?</h4><p>Call (323) 388-7534 or email cos.mainpage@gmail.com — we'll guide you every step of the way.</p></div>
+      </div>
+    </div>
+
+    <div class="s-section s-contact">
+      <div class="s-contact-grid">
+        <div>
+          <div class="s-section-label">Contact us</div>
+          <div class="s-section-title">We're here for <em>your family.</em></div>
+          <div class="s-cinfo">
+            <div class="s-crow"><div class="s-crow-icon">📞</div><div><h5>Phone</h5><p>(323) 388-7534</p></div></div>
+            <div class="s-crow"><div class="s-crow-icon">✉️</div><div><h5>Email</h5><p>cos.mainpage@gmail.com</p></div></div>
+            <div class="s-crow"><div class="s-crow-icon">🌐</div><div><h5>Website</h5><p>www.circleofsupportinc.org</p></div></div>
+            <div class="s-crow"><div class="s-crow-icon">👤</div><div><h5>Administrative Director</h5><p>Stella Keshishyan</p></div></div>
+          </div>
+          <div class="s-badges">
+            <div class="s-pill p">Vendor #PL2644</div>
+            <div class="s-pill t">NLACRC Vendorized</div>
+          </div>
+        </div>
+        <div class="s-form">
+          <div class="s-form-row">
+            <div class="s-fgroup"><label class="s-flabel">First name</label><input class="s-finput" placeholder="Your first name" readonly></div>
+            <div class="s-fgroup"><label class="s-flabel">Last name</label><input class="s-finput" placeholder="Your last name" readonly></div>
+          </div>
+          <div class="s-fgroup"><label class="s-flabel">Email address</label><input class="s-finput" placeholder="your@email.com" readonly></div>
+          <div class="s-fgroup"><label class="s-flabel">Phone number</label><input class="s-finput" placeholder="(xxx) xxx-xxxx" readonly></div>
+          <div class="s-fgroup"><label class="s-flabel">Preferred language</label><input class="s-finput" placeholder="Select a language" readonly></div>
+          <div class="s-fgroup"><label class="s-flabel">How can we help?</label><textarea class="s-ftextarea" readonly>Tell us about your family's situation...</textarea></div>
+          <div class="s-fsubmit">Send message</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="s-footer">
+      <div class="s-footer-name">Circle of Support Inc.</div>
+      <p>Vendor #PL2644 · NLACRC Vendorized</p>
+      <div class="s-footer-div"></div>
+      <p>(323) 388-7534 · cos.mainpage@gmail.com · www.circleofsupportinc.org</p>
+    </div>
+
+  </div>
+</div>
